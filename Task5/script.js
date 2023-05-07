@@ -19,8 +19,12 @@ const items = document.querySelector("#items")
 // we got the empty space
 
 
-// 4.firstelementchild
+// 5.firstelementchild
 
-console.log(items.firstElementChild)
-items.firstElementChild.textContent = " Hey Whats Up !!"
+// console.log(items.firstElementChild)
+// items.firstElementChild.textContent = " Hey Whats Up !!"
 // it is return the first element
+
+//6.firstchild
+console.log(items.firstChild)
+// we got the empty space 
