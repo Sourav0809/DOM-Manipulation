@@ -40,5 +40,9 @@ const items = document.querySelector("#items")
 // items.nextElementSibling.style.color = "blue"
 
 //9.previoussibling
-console.log(items.previousSibling)
+// console.log(items.previousSibling)
 // we again got an empty space 
+
+
+// 10. previouselementsibling
+items.previousElementSibling.style.color = "red"
