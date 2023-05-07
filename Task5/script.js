@@ -45,4 +45,14 @@ const items = document.querySelector("#items")
 
 
 // 10. previouselementsibling
-items.previousElementSibling.style.color = "red"
+// items.previousElementSibling.style.color = "red"
+
+
+// 11. creating an element 
+
+var newDiv = document.createElement("div")
+newDiv.className = "mydiv"
+console.log(newDiv)
+
+
+
