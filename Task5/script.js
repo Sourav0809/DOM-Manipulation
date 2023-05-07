@@ -26,5 +26,11 @@ const items = document.querySelector("#items")
 // it is return the first element
 
 //6.firstchild
-console.log(items.firstChild)
+// console.log(items.firstChild)
 // we got the empty space 
+
+// 7. nextsibling
+
+console.log(items.nextSibling)
+
+// we again got the empty space 
