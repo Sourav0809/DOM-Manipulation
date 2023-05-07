@@ -1,3 +1,11 @@
+const items = document.querySelector("#items")
+
 // ParentElement
-let items = document.querySelector("#items")
-items.parentElement.style.border = "thick solid blue"
+// items.parentElement.style.border = "thick solid blue"
+
+
+
+// ChildNodes
+// console.log(items.firstElementChild)
+console.log(items.lastElementChild)
+items.lastElementChild.style.color = "red"
