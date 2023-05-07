@@ -7,5 +7,8 @@ const items = document.querySelector("#items")
 
 // ChildNodes
 // console.log(items.firstElementChild)
-console.log(items.lastElementChild)
-items.lastElementChild.style.color = "red"
+// console.log(items.lastElementChild)
+// items.lastElementChild.style.color = "red"
+
+console.log(items.lastChild)
+// we got the empty space
