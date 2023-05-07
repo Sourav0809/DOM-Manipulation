@@ -31,6 +31,10 @@ const items = document.querySelector("#items")
 
 // 7. nextsibling
 
-console.log(items.nextSibling)
+// console.log(items.nextSibling)
 
 // we again got the empty space 
+
+// 8. nextelementsibling
+
+items.nextElementSibling.style.color = "blue"
