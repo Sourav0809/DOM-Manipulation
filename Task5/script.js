@@ -50,9 +50,34 @@ const items = document.querySelector("#items")
 
 // 11. creating an element 
 
-var newDiv = document.createElement("div")
+// var newDiv = document.createElement("div")
+// newDiv.className = "mydiv"
+// console.log(newDiv)
+// newDiv.setAttribute("id","div1")
+// console.log(newDiv)
+
+// 12. set setAttribute
+// var newDiv = document.createElement("div")
+// newDiv.className = "mydiv"
+// newDiv.setAttribute("id", "div1")
+// console.log(newDiv)
+
+// 13. createtextnode 14.appendchild 15. Adding Hello 
+const newDiv = document.createElement("div")
 newDiv.className = "mydiv"
-console.log(newDiv)
+newDiv.setAttribute("id", "div1")
+
+const textnode = document.createTextNode("Hello World")
+newDiv.appendChild(textnode)
+
+var container = document.querySelector('header .container')
+
+var h1 = document.querySelector('header h1')
+
+container.insertBefore(newDiv, h1)
+
+
+
 
 
 
