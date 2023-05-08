@@ -1,40 +1,66 @@
-var form = document.querySelector("#addForm")
-var formItem = document.querySelector("#items")
+const form = document.querySelector("#addForm")
+const formItem = document.querySelector("#items")
 
-//add item
 form.addEventListener("submit", additem)
-
-// delete event 
 formItem.addEventListener("click", removeItem)
 
-//add item funtion
 function additem(e) {
     e.preventDefault()
-    //get input value
-    var formInput = document.getElementById("item").value
+    let dummy = document.querySelector(".noelement")
+    if (dummy != null) {
+        dummy.remove()
+    }
 
-    var li = document.createElement("li")
+    const inputText = document.querySelector("#item").value
+    const li = document.createElement("li")
     li.className = "list-group-item"
-    li.appendChild(document.createTextNode(formInput))
+    li.appendChild(document.createTextNode(inputText))
 
-    // create delete button element 
-    var deleteBtn = document.createElement("button")
-    // adding classname to delete button bcz its look like the actual button
+    const deleteBtn = document.createElement("button")
     deleteBtn.className = "btn btn-danger btn-sm float-right delete"
     deleteBtn.appendChild(document.createTextNode("X"))
-
-    // adding delete button 
     li.appendChild(deleteBtn)
     formItem.appendChild(li)
+
+
 }
 
-// delete item function
+
 
 function removeItem(e) {
     if (e.target.classList.contains("delete")) {
         if (confirm("Are You Sure ? ")) {
-            var li = e.target.parentElement;
-            formItem.removeChild(li)
+            var li = e.target.parentElement
+            li.remove()
         }
+        if (formItem.children.length == 0) {
+            formItem.innerHTML += " <h2 class='noelement'> No item Present ADD NOW !! </h2>"
+        }
+
     }
+}
+
+// filter 
+
+const filter = document.querySelector("#filter")
+
+filter.addEventListener("keyup", search)
+
+
+function search(e) {
+
+    for (let i = 0; i < formItem.children.length; i++) {
+        if (formItem.children[i].children[0].textContent.toLowerCase().includes(filter.value.toLowerCase())) {
+            formItem.children[i].style.display = "flex"
+
+        }
+        else {
+            formItem.children[i].style.display = "none"
+
+        }
+
+
+
+    }
+
 }
