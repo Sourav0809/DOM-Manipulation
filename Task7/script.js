@@ -2,6 +2,7 @@ const form = document.querySelector(".form")
 const FormItem = document.querySelector(".flexitems")
 
 
+
 // addItem 
 form.addEventListener("submit", addItems)
 
@@ -10,11 +11,14 @@ form.addEventListener("submit", addItems)
 function addItems(e) {
     e.preventDefault()
     const InputVal = document.getElementById("sec-form-input").value
+    const SecInputVal = document.getElementById("sec-form").value
+
     const li = document.createElement("li")
     li.className = "listitem"
 
     const span = document.createElement("span")
     span.appendChild(document.createTextNode(InputVal))
+    span.appendChild(document.createTextNode(" " + SecInputVal))
     li.appendChild(span)
 
     // Adding the Button
