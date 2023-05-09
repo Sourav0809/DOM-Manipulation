@@ -83,8 +83,12 @@ let id = 1
 form.addEventListener("submit", saveData)
 
 function saveData(e) {
-
-    localStorage.setItem("form-item " + FormItem.children.length, FormItem.lastElementChild.firstElementChild.textContent)
+    //creating an obj 
+    let SetObj = {
+        value: FormItem.lastElementChild.firstElementChild.textContent
+    }
+    let SetObjSerialized = JSON.stringify(SetObj)
+    localStorage.setItem("form-item " + FormItem.children.length, SetObjSerialized)
 
 }
 
