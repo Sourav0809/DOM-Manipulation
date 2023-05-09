@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    padding: 20px;
+    background-color: rgb(26, 6, 61);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.heading{
+    color: white;
+}
+
+.input-item{
+    width: 18%;
+    padding: 7px;
+    border-radius: 10px;
+}
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    margin-top: 10px;
+    width: 80%;
+
+    overflow: hidden;
+    padding-bottom: 50px;
+
+}
+
+.form{
+
+    width: 70%;
+    display: flex;
+
+    align-items: center;
+    gap: 20px;
+
+
+
+}
+#sec-form-input {
+    width: 50%;
+    height: 30px;
+    border-radius: 7px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+#sec-form {
+    width: 50%;
+    height: 30px;
+    border-radius: 7px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+.btn{
+
+    padding: 8px 18px;
+    border-radius: 8px;
+    background-color: black;
+    color: white;
+}
+.btn:hover{
+    background-color: rgb(12, 158, 63);
+    color: aliceblue;
+}
+
+.main{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color:grey;
+    height: 50px;
+    padding: 10px;
+}
+
+.items{
+    margin-top: 20px;
+    padding-left: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+.secHead{
+    text-align: center;
+}
+
+.flexitems{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 7px;
+    width: 70%;
+}
+
+.listitem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    border: 2px solid #c1b8b8;
+    padding: 5px 10px;
+    border-radius: 8px;
+    
+}
+
+.secBtn{
+    background-color:red;
+    color: white;
+    padding: 7px 15px;
+    border-radius: 10px;
+}
+
+.Item-heading{
+    color: white;
+    font-size: 22px;
+    padding: 8px 18px;
+}
+
+.mainitem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.secHead{
+    margin-top: 20px;
+}
+
+.noelement{
+    text-align: center;
+    font-size: 40px;
+}
