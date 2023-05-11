@@ -117,3 +117,17 @@ header{
     padding: 40px;
     font-size: 30px;
 }
+
+.list_heading{
+    text-align: center;
+    font-size: 40px;
+    padding: 40px;
+}
+
+.edit-btn{
+    padding: 2px 12px;
+    background-color: green;
+    color: white;
+    border-radius: 7px;
+}
+

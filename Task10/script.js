@@ -1,134 +1,125 @@
-const MainForm = document.querySelector("#main_form")
+const mainForm = document.querySelector("#main_form")
+const list = document.querySelector(".items")
 
-const appoinmetns = document.querySelector(".items")
 
-MainForm.addEventListener("submit", additem)
-// add appointment 
+const name = document.querySelector("#person_name")
+const email = document.querySelector("#person_email")
+const phone = document.querySelector("#person_phone")
+
+
+/* -------------------------------------------------------------------------- */
+/*                              Add item Function                             */
+/* -------------------------------------------------------------------------- */
+
+mainForm.addEventListener("submit", additem)
 function additem(e) {
     e.preventDefault()
-
-    let dummy = document.querySelector(".noelement")
-    if (dummy != null) {
-        dummy.remove()
+    // also deleting the no appointment heading
+    if ((list.firstElementChild.className == "list_heading")) {
+        list.removeChild(list.firstElementChild)
     }
 
-    var nameInput = document.getElementById("person_name").value
-    var emailInput = document.getElementById("person_email").value
-    var ContactInput = document.getElementById("person_phone").value
-    var li = document.createElement("li")
-    li.className = "listitems"
 
-    var Namespan = document.createElement("span")
-    var EmailSpan = document.createElement("span")
-    var ContactSpan = document.createElement("span")
-    Namespan.setAttribute("contenteditable", "true")
-    var EditnameBtn = document.createElement("button")
-    EditnameBtn.appendChild(document.createTextNode("Edit"))
-    EditnameBtn.className = "EditnameBtn"
-
-
-    Namespan.appendChild(document.createTextNode(nameInput + " "))
-    EmailSpan.appendChild(document.createTextNode(emailInput + " "))
-    ContactSpan.appendChild(document.createTextNode(ContactInput + " "))
-
-
-    // delete btn
-
-    const deletebtn = document.createElement("button")
-    deletebtn.className = "listitems_btn"
-    deletebtn.appendChild(document.createTextNode("X"))
-
-
-    li.appendChild(Namespan)
-    li.appendChild(EmailSpan)
-    li.appendChild(ContactSpan)
-    li.appendChild(deletebtn)
-    li.appendChild(EditnameBtn)
-
-
-    appoinmetns.appendChild(li)
-
+    let enteredName = name.value
+    let enteredEmail = email.value
+    let enteredPhone = phone.value
+    list.innerHTML += ` <li class='listitems'><span contenteditable = 'true'>${enteredName}</span> <span>${enteredEmail}</span> <span>${enteredPhone}</span><button class="edit-btn">Edit</button><button class='listitems_btn'>X</button></li> `
+    // making the input box empty
+    name.value = ""
+    email.value = ""
+    phone.value = ""
 
 }
 
 
-// delete item 
+/* -------------------------------------------------------------------------- */
+/*                            Delete Item Function                            */
+/* -------------------------------------------------------------------------- */
 
-appoinmetns.addEventListener("click", removeItem)
-
-function removeItem(e) {
+list.addEventListener("click", deleteItem)
+function deleteItem(e) {
     if (e.target.classList.contains("listitems_btn")) {
-        if (confirm("Are You Sure ?? ")) {
-            var li = e.target.parentElement
-
-            // also delting form local storage 
+        if (confirm("Are You Sure ? ")) {
+            const li = e.target.parentElement
+            // Also deleting form local storage
             localStorage.removeItem(li.children[1].innerText)
-            appoinmetns.removeChild(li)
+            list.removeChild(li)
+
         }
-
-
     }
-    // empty item showing 
-
-    if (appoinmetns.children.length == 0) {
-        appoinmetns.innerHTML += " <h1 class='noelement'> No Appointment Booked !! </h1>"
+    if (list.children.length == 0) {
+        list.innerHTML += "<h1 class='list_heading'>No Appointment Booked !! </h1>"
     }
 }
 
 
 
-// filter 
 
+/* -------------------------------------------------------------------------- */
+/*                            Filter Item Function                            */
+/* -------------------------------------------------------------------------- */
 
 const filter = document.querySelector("#search")
+filter.addEventListener("keyup", filtervalues)
 
-filter.addEventListener("keyup", filterItem)
-
-function filterItem(e) {
-    for (let i = 0; i < appoinmetns.children.length; i++) {
-        if (appoinmetns.children[i].children[0].textContent.toLowerCase().includes(filter.value.toLowerCase())) {
-            appoinmetns.children[i].style.display = "flex"
+function filtervalues(e) {
+    for (let i = 0; i < list.children.length; i++) {
+        var target = list.children[i]
+        if (target.children[0].textContent.toLowerCase().includes(filter.value.toLowerCase()) || target.children[1].textContent.toLowerCase().includes(filter.value.toLowerCase()) || target.children[2].textContent.toLowerCase().includes(filter.value.toLowerCase())) {
+            target.style.display = "flex"
         }
         else {
-            appoinmetns.children[i].style.display = "none"
-
+            target.style.display = "none"
         }
+
     }
 }
 
 
-// adding value to local storage 
+/* -------------------------------------------------------------------------- */
+/*                  Function to Add items into Local Storage                  */
+/* -------------------------------------------------------------------------- */
 
+const submitBtn = document.querySelector("#submit")
+submitBtn.addEventListener("click", addToLocalstorage)
+function addToLocalstorage(e) {
+    let itemObj = {
+        person_Name: name.value,
+        person_Email: email.value,
+        person_Phone: phone.value
 
-MainForm.addEventListener("submit", addtoLocalstorage)
-
-function addtoLocalstorage(e) {
-    let AppointmentObj = {
-        value: appoinmetns.lastElementChild.firstElementChild.textContent
     }
 
-    let AppointmentObjSerialized = JSON.stringify(AppointmentObj)
-
-    // setting email as a key 
-    const email = document.getElementById("person_email").value
-    localStorage.setItem(email, AppointmentObjSerialized)
+    localStorage.setItem(email.value, JSON.stringify(itemObj))
 }
 
-appoinmetns.addEventListener("click", edit)
+
+
+/* -------------------------------------------------------------------------- */
+/*                                 Edit Button                                */
+/* -------------------------------------------------------------------------- */
+
+list.addEventListener("click", edit)
+
 function edit(e) {
-    if (e.target.classList.contains("EditnameBtn")) {
-        var name = e.target.parentElement.children[0].innerText
-        var email = e.target.parentElement.children[1].innerText
-        var phone = e.target.parentElement.children[2].innerText
+    if (e.target.classList.contains("edit-btn")) {
+        if (e.target.innerText == "Edit") {
+            e.target.innerText = "Save"
+            e.target.parentElement.children[0].setAttribute("contenteditable", "true")
 
-        var newObj = {
-            name: name,
-            email: email,
-            phone: phone
         }
+        else {
+            e.target.innerText = "Edit"
+            e.target.parentElement.children[0].setAttribute("contenteditable", "false")
+            let editObj = {
+                person_Name: e.target.parentElement.children[0].textContent,
+                person_Email: e.target.parentElement.children[1].textContent,
+                person_Phone: e.target.parentElement.children[2].textContent
 
-        localStorage.setItem(email, JSON.stringify(newObj))
+            }
+
+            localStorage.setItem(e.target.parentElement.children[1].textContent, JSON.stringify(editObj))
+
+        }
     }
-
-
 }
